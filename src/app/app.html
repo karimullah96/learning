@@ -1,0 +1,239 @@
+
+<!-- Header -->
+<header class="header">
+  <div class="header__left">
+    <div class="header__logo">f</div>
+    <div class="header__search">
+      <span>🔍</span>
+      <input type="text" placeholder="Search Facebook" />
+    </div>
+  </div>
+
+  <nav class="header__center">
+    <div class="header__nav-item header__nav-item--active">🏠</div>
+    <div class="header__nav-item">📺</div>
+    <div class="header__nav-item">🏪</div>
+    <div class="header__nav-item">👥</div>
+    <div class="header__nav-item">🎮</div>
+  </nav>
+
+  <div class="header__right">
+    <button class="header__icon-btn">☰</button>
+    <button class="header__icon-btn">💬</button>
+    <button class="header__icon-btn">🔔</button>
+    <div class="header__avatar">K</div>
+  </div>
+</header>
+
+<!-- Main Layout -->
+<div class="layout">
+  <!-- Left Sidebar -->
+  <aside class="sidebar-left">
+    <div class="sidebar-menu-item">
+      <div class="header__avatar" style="width: 36px; height: 36px; font-size: 0.9rem;">K</div>
+      <span class="sidebar-menu-item__label">Karim</span>
+    </div>
+    <div class="sidebar-menu-item">
+      <div class="sidebar-menu-item__icon">👥</div>
+      <span class="sidebar-menu-item__label">Friends</span>
+    </div>
+    <div class="sidebar-menu-item">
+      <div class="sidebar-menu-item__icon">🧠</div>
+      <span class="sidebar-menu-item__label">Memories</span>
+    </div>
+    <div class="sidebar-menu-item">
+      <div class="sidebar-menu-item__icon">💾</div>
+      <span class="sidebar-menu-item__label">Saved</span>
+    </div>
+    <div class="sidebar-menu-item">
+      <div class="sidebar-menu-item__icon">📂</div>
+      <span class="sidebar-menu-item__label">Groups</span>
+    </div>
+    <div class="sidebar-menu-item">
+      <div class="sidebar-menu-item__icon">📺</div>
+      <span class="sidebar-menu-item__label">Watch</span>
+    </div>
+    <div class="sidebar-menu-item">
+      <div class="sidebar-menu-item__icon">⬇️</div>
+      <span class="sidebar-menu-item__label">See more</span>
+    </div>
+
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-section-title">Your Shortcuts</div>
+    <div class="sidebar-menu-item">
+      <div class="sidebar-menu-item__icon" style="background: #ffe0e0;">🎮</div>
+      <span class="sidebar-menu-item__label">Gamers Community</span>
+    </div>
+    <div class="sidebar-menu-item">
+      <div class="sidebar-menu-item__icon" style="background: #e0f0ff;">📱</div>
+      <span class="sidebar-menu-item__label">Tech News</span>
+    </div>
+    <div class="sidebar-menu-item">
+      <div class="sidebar-menu-item__icon" style="background: #e0ffe0;">🎵</div>
+      <span class="sidebar-menu-item__label">Music Lovers</span>
+    </div>
+  </aside>
+
+  <!-- Feed -->
+  <main class="feed">
+    <!-- Stories -->
+    <div class="stories">
+      <div class="story story--create">
+        <div class="story__create-icon">+</div>
+        <span class="story__create-text">Create<br>Story</span>
+      </div>
+      @for (story of stories(); track story.id) {
+        <div class="story" [style.background]="story.bg">
+          <div class="story__avatar" [style.background]="story.bg">{{ story.avatar }}</div>
+          <span class="story__name">{{ story.name }}</span>
+        </div>
+      }
+    </div>
+
+    <!-- Create Post -->
+    <div class="create-post">
+      <div class="create-post__top">
+        <div class="create-post__avatar">K</div>
+        <div class="create-post__input">What's on your mind, Karim?</div>
+      </div>
+      <div class="create-post__divider"></div>
+      <div class="create-post__actions">
+        <button class="create-post__action">
+          <span class="create-post__action-icon">🎥</span>
+          <span class="create-post__action-label">Live video</span>
+        </button>
+        <button class="create-post__action">
+          <span class="create-post__action-icon">🖼️</span>
+          <span class="create-post__action-label">Photo/video</span>
+        </button>
+        <button class="create-post__action">
+          <span class="create-post__action-icon">😊</span>
+          <span class="create-post__action-label">Feeling/activity</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Posts -->
+    @for (post of posts(); track post.id) {
+      <article class="post">
+        <div class="post__header">
+          <div
+            class="post__avatar"
+            [style.background]="post.id === 1
+              ? 'linear-gradient(135deg, #f093fb, #f5576c)'
+              : post.id === 2
+                ? 'linear-gradient(135deg, #4facfe, #00f2fe)'
+                : 'linear-gradient(135deg, #43e97b, #38f9d7)'"
+          >{{ post.avatar }}</div>
+          <div class="post__info">
+            <div class="post__name">{{ post.name }}</div>
+            <div class="post__time">{{ post.time }}</div>
+          </div>
+          <div class="post__menu">⋯</div>
+        </div>
+
+        <div class="post__content">{{ post.content }}</div>
+
+        <div
+          class="post__image"
+          [style.background]="post.id === 1
+            ? 'linear-gradient(135deg, #667eea, #764ba2)'
+            : post.id === 2
+              ? 'linear-gradient(135deg, #f093fb, #f5576c)'
+              : 'linear-gradient(135deg, #4facfe, #00f2fe)'"
+        >
+          {{ post.id === 1 ? '🏔️' : post.id === 2 ? '🚀' : '☀️' }}
+        </div>
+
+        <div class="post__stats">
+          <div class="post__likes-display">
+            <span class="post__like-emoji">👍</span>
+            <span>{{ post.likes }}</span>
+          </div>
+          <div>
+            <span>{{ post.comments }} comments</span>
+            <span style="margin: 0 4px;">·</span>
+            <span>{{ post.shares }} shares</span>
+          </div>
+        </div>
+
+        <div class="post__actions">
+          <button
+            class="post__action-btn"
+            [class.post__action-btn--liked]="likedPosts().has(post.id)"
+            (click)="toggleLike(post.id)"
+          >
+            <span class="post__action-icon">{{ likedPosts().has(post.id) ? '👍' : '👍' }}</span>
+            <span>Like</span>
+          </button>
+          <button class="post__action-btn">
+            <span class="post__action-icon">💬</span>
+            <span>Comment</span>
+          </button>
+          <button class="post__action-btn">
+            <span class="post__action-icon">↗️</span>
+            <span>Share</span>
+          </button>
+        </div>
+      </article>
+    }
+  </main>
+
+  <!-- Right Sidebar -->
+  <aside class="sidebar-right">
+    <div class="sidebar-right__section">
+      <div class="sidebar-right__title">Sponsored</div>
+      <div class="sponsored-card">
+        <div class="sponsored-card__image" style="background: linear-gradient(135deg, #667eea, #764ba2);">🛍️</div>
+        <div class="sponsored-card__info">
+          <div style="font-size: 0.9rem; font-weight: 500;">Shop the Latest Deals</div>
+          <div class="sponsored-card__domain">shop.example.com</div>
+        </div>
+      </div>
+      <div class="sponsored-card">
+        <div class="sponsored-card__image" style="background: linear-gradient(135deg, #f093fb, #f5576c);">🎮</div>
+        <div class="sponsored-card__info">
+          <div style="font-size: 0.9rem; font-weight: 500;">Play Games Online</div>
+          <div class="sponsored-card__domain">games.example.com</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-divider"></div>
+
+    <div class="sidebar-right__section">
+      <div class="sidebar-right__title">Contacts</div>
+      @for (contact of contacts(); track contact.id) {
+        <div class="contact-item">
+          <div
+            class="contact-item__avatar"
+            [class.contact-item__avatar--online]="contact.online"
+            [style.background]="contact.id === 1
+              ? 'linear-gradient(135deg, #667eea, #764ba2)'
+              : contact.id === 2
+                ? 'linear-gradient(135deg, #f093fb, #f5576c)'
+                : contact.id === 3
+                  ? 'linear-gradient(135deg, #4facfe, #00f2fe)'
+                  : contact.id === 4
+                    ? 'linear-gradient(135deg, #43e97b, #38f9d7)'
+                    : contact.id === 5
+                      ? 'linear-gradient(135deg, #fa709a, #fee140)'
+                      : contact.id === 6
+                        ? 'linear-gradient(135deg, #30cfd0, #330867)'
+                        : contact.id === 7
+                          ? 'linear-gradient(135deg, #a8edea, #fed6e3)'
+                          : 'linear-gradient(135deg, #5ee7df, #b490ca)'"
+          >{{ contact.avatar }}</div>
+          <span class="contact-item__name">{{ contact.name }}</span>
+        </div>
+      }
+    </div>
+
+    <div class="sidebar-divider"></div>
+
+    <div class="sidebar-footer">
+      <a href="#">Privacy</a> · <a href="#">Terms</a> · <a href="#">Advertising</a> · <a href="#">Cookies</a> · <a href="#">More</a><br>
+      Meta © 2025 — Built by Karim
+    </div>
+  </aside>
+</div>
